@@ -1,4 +1,5 @@
 import 'package:ayurvedic_centre/utils/sizes/sizes.dart';
+import 'package:ayurvedic_centre/view/home_screen/home_screen.dart';
 import 'package:ayurvedic_centre/view/widgets/login_button/login_button.dart';
 import 'package:ayurvedic_centre/view/widgets/signup_text_formfield/signup_text_formfield.dart';
 import 'package:flutter/material.dart';
@@ -60,10 +61,20 @@ class LoginScreen extends StatelessWidget {
                     keyboardType: TextInputType.text,
                   ),
                   kHeight50,
-                  LoginButtonWidget(
-                    height: 50,
-                    width: double.infinity,
-                    text: 'Login',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
+                    child: LoginButtonWidget(
+                      height: 50,
+                      width: double.infinity,
+                      text: 'Login',
+                    ),
                   ),
                   kHeight50,
                   kHeight50,
