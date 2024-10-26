@@ -1,4 +1,5 @@
 import 'package:ayurvedic_centre/utils/sizes/sizes.dart';
+import 'package:ayurvedic_centre/view/register_screen.dart/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,9 +10,22 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          const Icon(
-            Icons.notifications_none,
-            size: 26,
+          const Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Icon(
+                Icons.notifications_none,
+                size: 26,
+              ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: CircleAvatar(
+                  radius: 4,
+                  backgroundColor: Colors.red,
+                ),
+              ),
+            ],
           ),
           kWidth10,
         ],
@@ -203,7 +217,14 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterScreen(),
+                ),
+              );
+            },
             child: Container(
               height: 50,
               margin: const EdgeInsets.only(left: 20, right: 20, bottom: 5),

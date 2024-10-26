@@ -13,6 +13,8 @@ class SignUpTextFromFiled extends StatelessWidget {
   // final TextEditingController textfromController;
   String? Function(String?)? validator;
   void Function()? onTapFunction;
+  Widget? suffixIcon;
+  Widget? prefixIcon;
   SignUpTextFromFiled({
     required this.text,
     required this.hintText,
@@ -22,6 +24,8 @@ class SignUpTextFromFiled extends StatelessWidget {
     // required this.textfromController,
     this.validator,
     this.onTapFunction,
+    this.suffixIcon,
+    this.prefixIcon,
     this.readOnly = false,
     super.key,
   });
@@ -30,67 +34,66 @@ class SignUpTextFromFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: maxLines == 3 ? 170 : 90,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GooglePoppinsWidgets(
-              fontsize: 16,
-              fontWeight: FontWeight.w400,
-              text: text,
-            ),
-            Center(
-              child: TextFormField(
-                onTap: onTapFunction,
-                keyboardType: keyboardType,
-                validator: validator,
-                // controller: textfromController,
-                readOnly: readOnly,
-                maxLines: maxLines,
-                maxLength: maxLength,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.withOpacity(0.3),
-                  hintText: hintText,
-                  hintStyle: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w300),
-                  isDense: true,
-                  border: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                      width: 1.0,
-                    ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GooglePoppinsWidgets(
+            fontsize: 16,
+            fontWeight: FontWeight.w400,
+            text: text,
+          ),
+          Center(
+            child: TextFormField(
+              onTap: onTapFunction,
+              keyboardType: keyboardType,
+              validator: validator,
+              // controller: textfromController,
+              readOnly: readOnly,
+              maxLines: maxLines,
+              maxLength: maxLength,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color(0xffd9d9d9).withOpacity(0.4),
+                hintText: hintText,
+                hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w300),
+                isDense: true,
+                prefixIcon: prefixIcon,
+                suffixIcon: suffixIcon,
+                border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                      width: 1.0,
-                    ),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                    width: 1.0,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade500,
-                      width: 1.0,
-                    ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                    width: 1.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade500,
+                    width: 1.0,
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
