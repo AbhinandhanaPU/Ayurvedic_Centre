@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:ayurvedic_centre/utils/sizes/sizes.dart';
 import 'package:ayurvedic_centre/view/widgets/text_font_widgets/google_poppins.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class SignUpTextFromFiled extends StatelessWidget {
   int? maxLength;
   bool readOnly;
   TextInputType? keyboardType;
-  // final TextEditingController textfromController;
+  final TextEditingController textfromController;
   String? Function(String?)? validator;
   void Function()? onTapFunction;
   Widget? suffixIcon;
@@ -21,7 +22,7 @@ class SignUpTextFromFiled extends StatelessWidget {
     this.maxLines,
     this.maxLength,
     this.keyboardType,
-    // required this.textfromController,
+    required this.textfromController,
     this.validator,
     this.onTapFunction,
     this.suffixIcon,
@@ -33,9 +34,9 @@ class SignUpTextFromFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: maxLines == 3 ? 170 : 90,
+      height: maxLines == 3 ? 170 : 115,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GooglePoppinsWidgets(
@@ -43,12 +44,13 @@ class SignUpTextFromFiled extends StatelessWidget {
             fontWeight: FontWeight.w400,
             text: text,
           ),
+          kHeight10,
           Center(
             child: TextFormField(
               onTap: onTapFunction,
               keyboardType: keyboardType,
               validator: validator,
-              // controller: textfromController,
+              controller: textfromController,
               readOnly: readOnly,
               maxLines: maxLines,
               maxLength: maxLength,

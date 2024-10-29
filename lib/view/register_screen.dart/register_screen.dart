@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:ayurvedic_centre/utils/sizes/sizes.dart';
 import 'package:ayurvedic_centre/utils/utils.dart';
 import 'package:ayurvedic_centre/view/widgets/dropdown/common_drop_down.dart';
@@ -11,7 +13,16 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
   final List<int> hours = List.generate(24, (index) => index); // 0-23 for hours
   final List<int> minutes = List.generate(60, (index) => index);
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController totalAmountController = TextEditingController();
+  TextEditingController discountController = TextEditingController();
+  TextEditingController advanceController = TextEditingController();
+  TextEditingController balanceController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
 
+  String location = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,16 +63,19 @@ class RegisterScreen extends StatelessWidget {
               SignUpTextFromFiled(
                 text: 'Name',
                 hintText: 'Enter your full name',
+                textfromController: nameController,
               ),
               kHeight20,
               SignUpTextFromFiled(
                 text: 'Whatsapp Number',
                 hintText: 'Enter your Whatsapp number',
+                textfromController: phoneController,
               ),
               kHeight20,
               SignUpTextFromFiled(
                 text: 'Address',
                 hintText: 'Enter your full address',
+                textfromController: addressController,
               ),
               kHeight20,
               GooglePoppinsWidgets(
@@ -76,7 +90,9 @@ class RegisterScreen extends StatelessWidget {
                     child: CommonDropdown<String>(
                       items: const ['New York', 'Los Angeles', 'Chicago'],
                       hintText: 'Choose your Location',
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        location = value!;
+                      },
                       itemToString: (item) => item,
                     ),
                   ),
@@ -260,11 +276,15 @@ class RegisterScreen extends StatelessWidget {
               SignUpTextFromFiled(
                 text: 'Total Amount',
                 hintText: '',
+                validator: checkFieldEmpty,
+                textfromController: totalAmountController,
               ),
               kHeight20,
               SignUpTextFromFiled(
                 text: 'Discount Amount',
                 hintText: '',
+                validator: checkFieldEmpty,
+                textfromController: discountController,
               ),
               kHeight20,
               GooglePoppinsWidgets(
@@ -284,23 +304,29 @@ class RegisterScreen extends StatelessWidget {
               SignUpTextFromFiled(
                 text: 'Advance Amount',
                 hintText: '',
+                validator: checkFieldEmpty,
+                textfromController: advanceController,
               ),
               kHeight20,
               SignUpTextFromFiled(
                 text: 'Balance Amount',
                 hintText: '',
+                validator: checkFieldEmpty,
+                textfromController: balanceController,
               ),
               kHeight20,
               SignUpTextFromFiled(
                 text: 'Treatment Date',
                 hintText: '',
+                validator: checkFieldEmpty,
+                textfromController: dateController,
                 suffixIcon: const Icon(
                   Icons.calendar_month_outlined,
                   color: Color(0xff006851),
                 ),
                 keyboardType: TextInputType.none,
-                onTapFunction: () {
-                  dateTimePicker(context);
+                onTapFunction: () async {
+                  dateController.text = await dateTimePicker(context);
                 },
               ),
               kHeight20,

@@ -14,7 +14,6 @@ Future<String> dateTimePicker(BuildContext context) async {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-
     if (time != null) {
       final dateTime = DateTime(
         date.year,
@@ -28,4 +27,11 @@ Future<String> dateTimePicker(BuildContext context) async {
   }
 
   return '';
+}
+
+String? checkFieldEmpty(String? fieldContent) {
+  if (fieldContent == null || fieldContent.isEmpty) {
+    return "Field is mandatory";
+  }
+  return null;
 }
